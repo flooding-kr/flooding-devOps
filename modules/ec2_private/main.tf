@@ -1,11 +1,17 @@
-resource "aws_instance" "db" {
-  ami           = var.ami_id
-  instance_type = var.instance_type
-  subnet_id     = var.subnet_id
+
+module "ec2_private" {
+  source  = "terraform-aws-modules/ec2-instance/aws"
+
+  name = "flooding-db-instance"
+
+  instance_type          = var.instance_type
+  key_name               = var.key_name
+  monitoring             = true
   vpc_security_group_ids = var.vpc_security_group_ids
+  subnet_id              = var.subnet_id
 
   tags = {
-    Name        = "${var.environment}-db-instance"
-    Environment = var.environment
+    Terraform   = "true"
+    Environment = "prod"
   }
 }

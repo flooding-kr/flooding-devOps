@@ -1,11 +1,17 @@
-resource "aws_instance" "server" {
-  ami           = var.ami_id
-  instance_type = var.instance_type
-  subnet_id     = var.subnet_id
+module "ec2_public" {
+  source  = "terraform-aws-modules/ec2-instance/aws"
+
+  name = "flooding-backend-instance"
+
+  instance_type          = "t3.small"
+  ami = var.ami_id
+  key_name               = var.key_name
+  monitoring             = true
   vpc_security_group_ids = var.vpc_security_group_ids
+  subnet_id              = var.subnet_id
 
   tags = {
-    Name        = "${var.environment}-server-instance"
-    Environment = var.environment
+    Terraform   = "true"
+    Environment = "dev"
   }
 }
