@@ -39,7 +39,7 @@ module "db-sg" {
       source = module.backend-sg.security_group_id
     }
   ]
-  number_of_computed_ingress_with_source_security_group_id = 2
+  number_of_computed_ingress_with_source_security_group_id = 1
 }
 
 module "alb-sg" {
