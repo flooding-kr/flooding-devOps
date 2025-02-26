@@ -13,7 +13,7 @@ variable "instance_type" {
 variable "subnet_id" {
   description = "EC2 인스턴스가 생성될 서브넷 ID"
   type        = string
-  default = aws_subnet.public.id
+  default = module.vpc.public_subnet_id
 }
 
 variable "environment" {
