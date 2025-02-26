@@ -23,6 +23,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.3.0  # 원하는 버전 지정
+    - name: Terraform Init
+      run: terraform init
+
+
     - name: Terraform Destroy
       if: github.event_name == 'workflow_dispatch'
       run: terraform destroy -auto-approve
