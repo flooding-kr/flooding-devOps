@@ -21,3 +21,8 @@ variable "key_name" {
   type = string
   default = "flooding-key"
 }
+
+variable "user_data" {
+  type = string
+  default = ""
+}
