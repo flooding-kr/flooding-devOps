@@ -1,6 +1,6 @@
 output "instance_public_ip" {
   description = "EC2 인스턴스의 퍼블릭 IP"
-  value       = module.ec2.public_ip
+  value       = module.ec2_public.public_ip
 }
 
 output "vpc_id" {
