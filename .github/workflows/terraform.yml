@@ -91,3 +91,21 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
+
+    - name: Send success message to Discord
+      if: success()
+      uses: enbraining/discord-webhook-action@v1.0.1
+      with:
+        webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        type: EMBED
+        title: "Successfully complete build"
+        color: 57F287
+
+    - name: Send failure message to Discord
+      if: failure()
+      uses: enbraining/discord-webhook-action@v1.0.1
+      with:
+        webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        type: EMBED
+        title: "Failed to complete build"
+        color: ED4245
