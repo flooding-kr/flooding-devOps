@@ -10,10 +10,9 @@ variable "instance_type" {
   default     = "t3.small"
 }
 
-variable "public_subnet_id" {
+variable "subnet_id" {
   type = string
 }
-
 
 variable "environment" {
   description = "환경 이름 (예: dev, prod)"
