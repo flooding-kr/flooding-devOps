@@ -1,5 +1,5 @@
 variable "vpc_cidr" {
-  default = "10.0.0.0/20"
+  default = "vpc_cidr"
   type        = string
 }
 
@@ -9,7 +9,7 @@ variable "environment" {
 }
 
 variable "public_subnet_cidr" {
-  default = "10.0.1.0/24"
+  default = "public_cidr"
   type        = string
 } 
 
@@ -18,6 +18,6 @@ variable "azs" {
   type = string
 }
 variable "private_subnet_cidr" {
-    default = "10.0.2.0/24"
+    default = "private_cidr"
     type = string
 }
