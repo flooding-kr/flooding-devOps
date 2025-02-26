@@ -13,8 +13,8 @@ module "vpc" {
 }
 
 module "ec2_public" {
-  source         = "./modules/ec2_public"
-  
+  source = "./modules/ec2_public"
+
 
   ami_id        = "ami-024ea438ab0376a47" # Ubuntu 24.04 LTS (서울 리전)
   instance_type = "t3.small"
@@ -23,11 +23,11 @@ module "ec2_public" {
 }
 
 module "ec2_private" {
-    source = "./modules/ec2_private"
+  source = "./modules/ec2_private"
 
-    ami_id = "ami-024ea438ab0376a47"
-    instance_type = "t3.samll"
-    subnet_id = module.vpc.private_subnet_id
-    environment = "prod"
-  
+  ami_id        = "ami-024ea438ab0376a47"
+  instance_type = "t3.samll"
+  subnet_id     = module.vpc.private_subnet_id
+  environment   = "prod"
+
 }
