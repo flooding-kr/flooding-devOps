@@ -9,3 +9,9 @@ variable "ami_id" {
   type        = string
   default     = "ami-024ea438ab0376a47"
 }
+
+variable "vpc_cidr" {
+  type    = list(string)
+  default = ["10.0.0.0/20"]
+
+}

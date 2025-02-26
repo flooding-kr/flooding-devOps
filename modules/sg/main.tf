@@ -51,6 +51,7 @@ module "alb-sg" {
 
   ingress_cidr_blocks = ["0.0.0.0/0"]
   ingress_rules = ["https-443-tcp", "http-80-tcp"]
+  egress_cidr_blocks = var.vpc_cidr
   egress_rules = ["all-all"]
 }
 
