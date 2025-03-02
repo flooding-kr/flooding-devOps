@@ -81,19 +81,19 @@ jobs:
         terraform_version: "1.5.0"  # 최신 안정 버전으로 업데이트하세요
 
     - name: Terraform Init
-      run: 
+      run: |
         cd terraform/
         terraform init
       env:
         TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
 
     - name: Terraform Format
-      run:
+      run: |
         cd terraform/ 
         terraform fmt -check
 
     - name: Terraform Plan
-      run:
+      run: |
         cd terraform/ 
         terraform plan -input=false
       env:
