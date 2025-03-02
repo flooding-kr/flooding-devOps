@@ -9,7 +9,7 @@ module "alb" {
   
 
   access_logs = {
-    bucket = "my-alb-logs"
+    bucket = "flooding-alb-logs"
   }
 
   listeners = {
@@ -25,16 +25,16 @@ module "alb" {
     https = {
       port            = 443
       protocol        = "HTTPS"
-      certificate_arn = "arn:aws:iam::123456789012:server-certificate/test_cert-123456789012"
+      certificate_arn = "arn:aws:acm:ap-northeast-2:495740757494:certificate/9e29cb8d-3bd6-455c-87c2-43a50165e32b"
 
       forward = {
-        target_group_key = "ex-instance"
+        target_group_key = "flooding-backend"
       }
     }
   }
 
   target_groups = {
-    ex-instance = {
+    flooding-backend = {
       name_prefix      = "h1"
       protocol         = "HTTP"
       port             = 80
@@ -43,3 +43,4 @@ module "alb" {
     }
   }
 }
+
