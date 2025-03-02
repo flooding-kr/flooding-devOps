@@ -8,9 +8,6 @@ module "alb" {
   security_groups = var.security_group_id
   
 
-  access_logs = {
-    bucket = "flooding-alb-logs"
-  }
 
   listeners = {
     http-https-redirect = {
