@@ -99,6 +99,14 @@ jobs:
       env:
         TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
 
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run:
+        cd terraform/ 
+        terraform apply -auto-approve -input=false
+      env:
+        TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
 
     - name: Send success message to Discord
       if: success()
