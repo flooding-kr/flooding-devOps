@@ -8,6 +8,8 @@ module "ecr" {
         rulePriority = 1,
         description  = "Keep last 15 images",
         selection = {
+          tagStatus     = "tagged",
+          tagPrefixList = ["v"],
           countType     = "imageCountMoreThan",
           countNumber   = 15
         },
