@@ -32,6 +32,7 @@ module "ec2_private" {
   instance_type          = "t3.small"
   subnet_id              = module.vpc.private_subnet_id[0]
   vpc_security_group_ids = [module.sg.db_sg_id]
+  user_data              = file("${path.root}/../scripts/db.sh")
 }
 
 module "ecr" {
