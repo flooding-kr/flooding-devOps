@@ -20,7 +20,7 @@ module "ec2_public" {
 
 
   ami_id                 = var.ami_id
-  instance_type          = "t3.small"
+  instance_type          = "t3.medium"
   subnet_id              = module.vpc.public_subnet_id[0]
   vpc_security_group_ids = [module.sg.backend_sg_id]
 }
