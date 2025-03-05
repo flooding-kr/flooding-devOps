@@ -51,4 +51,13 @@ module "alb" {
 
 }
 
+module "aws_codedeploy_deployment_group" {
+  source = "./codedeploy"
+  deployment_group_name = "flooding-DG"
+  alb_name = module.alb.alb_name
+  iam_role_arn = 
+
+  
+
+}
 
