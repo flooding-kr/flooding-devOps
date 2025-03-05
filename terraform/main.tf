@@ -32,6 +32,7 @@ module "ec2_private" {
   instance_type          = "t3.small"
   subnet_id              = module.vpc.private_subnet_id[0]
   vpc_security_group_ids = [module.sg.db_sg_id]
+  user_data              = file("${path.root}/../scripts/db.sh")
 }
 
 module "ecr" {
@@ -50,4 +51,13 @@ module "alb" {
 
 }
 
+module "aws_codedeploy_deployment_group" {
+  source = "./codedeploy"
+  deployment_group_name = "flooding-DG"
+  alb_name = module.alb.alb_name
+  iam_role_arn = 
+
+  
+
+}
 

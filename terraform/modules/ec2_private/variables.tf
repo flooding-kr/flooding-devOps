@@ -22,3 +22,9 @@ variable "key_name" {
   type = string
   default = "flooding-key"
 }
+
+variable "user_data" {
+  description = "User data script for EC2 instance"
+  type        = string
+  default     = null
+}
