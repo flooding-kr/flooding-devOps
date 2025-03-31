@@ -1,14 +1,14 @@
 variable "region" {
   default = "ap-northeast-2"
-  type = string
+  type    = string
 }
 
 variable "environment" {
   default = "prod"
-  type = string
+  type    = string
 }
 
 variable "key_name" {
   default = "flooding-key"
-  type = string
+  type    = string
 }
