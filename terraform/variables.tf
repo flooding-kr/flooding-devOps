@@ -15,5 +15,5 @@ variable "key_name" {
 
 variable "image_tag" {
   default = "latest"
-  type = string
+  type    = string
 }
