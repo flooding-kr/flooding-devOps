@@ -12,3 +12,8 @@ variable "key_name" {
   default = "flooding-key"
   type    = string
 }
+
+variable "image_tag" {
+  default = "latest"
+  type = string
+}
