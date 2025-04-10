@@ -60,11 +60,18 @@ module "server-instance" {
 
   user_data = <<-EOF
     #!/bin/bash
-    sudo yum install -y ruby
+    sudo apt-get update
+    sudo apt-get install -y ruby
     wget https://aws-codedeploy-${var.region}.s3.${var.region}.amazonaws.com/latest/install
     chmod +x ./install
     sudo ./install auto
     sudo service codedeploy-agent start
+    sudo apt-get update
+    sudo apt-get install ca-certificates curl
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
   EOF
 
   tags = {
@@ -430,14 +437,4 @@ module "s3_bucket" {
     enabled = true
   }
 }
-# Cloud Trail
 
-
-# ACM
-module "acm" {
-  source  = "terraform-aws-modules/acm/aws"
-  version = "~> 4.0"
-
-  domain_name = "example.com"
-  zone_id     = aws_route53_zone.private.zone_id
-}
