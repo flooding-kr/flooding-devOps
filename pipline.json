@@ -1,0 +1,96 @@
+{
+    "pipeline": {
+      "name": "flooding-pipeline",
+      "pipelineType": "V2",
+      "roleArn": "arn:aws:iam::588738598492:role/service-role/AWSCodePipelineServiceRole-ap-northeast-2-flooding-pipline",
+      "artifactStore": {
+        "type": "S3",
+        "location": "codepipeline-ap-northeast-2-ea312f5d3183-4ea7-a0be-8bf648f7daeb"
+      },
+      "stages": [
+        {
+          "name": "Source",
+          "actions": [
+            {
+              "name": "GitHub_Source",
+              "actionTypeId": {
+                "category": "Source",
+                "owner": "AWS",
+                "provider": "CodeStarSourceConnection",
+                "version": "1"
+              },
+              "outputArtifacts": [
+                {
+                  "name": "SourceArtifact"
+                }
+              ],
+              "configuration": {
+                "ConnectionArn": "arn:aws:codeconnections:ap-northeast-2:588738598492:connection/b07906f7-2023-4175-b1d4-db4d7c051de7",
+                "FullRepositoryId": "flooding-kr/flooding-baceknd",
+                "BranchName": "main",
+                "DetectChanges": "true"
+              },
+              "runOrder": 1
+            }
+          ]
+        },
+        {
+          "name": "Build",
+          "actions": [
+            {
+              "name": "ECR_Build_And_Publish",
+              "actionTypeId": {
+                "category": "Build",
+                "owner": "AWS",
+                "provider": "ECR",
+                "version": "1"
+              },
+              "inputArtifacts": [
+                {
+                  "name": "SourceArtifact"
+                }
+              ],
+              "outputArtifacts": [
+                {
+                  "name": "BuildArtifact"
+                }
+              ],
+              "region": "ap-northeast-2",
+              "configuration": {
+                "RepositoryName": "flooding-ecr",
+                "ImageTag": "latest",
+                "DockerfilePath": "Dockerfile"
+              },
+              "runOrder": 1
+            }
+          ]
+        },
+        {
+          "name": "Deploy",
+          "actions": [
+            {
+              "name": "CodeDeploy",
+              "actionTypeId": {
+                "category": "Deploy",
+                "owner": "AWS",
+                "provider": "CodeDeploy",
+                "version": "1"
+              },
+              "inputArtifacts": [
+                {
+                  "name": "SourceArtifact"
+                }
+              ],
+              "configuration": {
+                "ApplicationName": "flooding-deploy",
+                "DeploymentGroupName": "flooding-dg"
+              },
+              "runOrder": 1
+            }
+          ]
+        }
+      ],
+      "version": 1
+    }
+  }
+  

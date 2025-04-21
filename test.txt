@@ -1,0 +1,22 @@
+#!/bin/bash
+
+apt update
+apt install -y ruby-full wget
+
+cd /tmp
+
+wget https://aws-codedeploy-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/latest/install
+
+chmod +x ./install
+
+./install auto > /tmp/codedeploy-agent-install.log
+
+systemctl start codedeploy-agent || true
+systemctl enable codedeploy-agent || true
+
+apt-get update -y
+apt-get install -y unzip curl
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+./aws/install
