@@ -1,7 +1,4 @@
 # flooding-devOps
 
-![image](https://github.com/user-attachments/assets/3174aaf2-36d1-475c-bd48-31720a919b9a)
 
-
-
-
+![flooding-archi-ec2 drawio](https://github.com/user-attachments/assets/1881c218-e833-4dbf-8a68-021f453c38bc)
