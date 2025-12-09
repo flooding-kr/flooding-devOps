@@ -1,8 +1,6 @@
-# flooding-devOps
+# flooding AWS 인프라 아키텍처
 
 <img width="847" height="552" alt="스크린샷 2025-09-15 오전 9 20 57" src="https://github.com/user-attachments/assets/9e6630cf-0e0b-4bcc-af85-fdba64a7f9c1" />
-
-# flooding AWS 인프라 아키텍처
 
 본 레포지토리는 Vercel 기반 프론트엔드와 AWS 기반 백엔드 인프라를 포함한 전체 CI/CD 및 배포 구조를 설명합니다.
 
